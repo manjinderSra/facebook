@@ -1,0 +1,58 @@
+<nav class="bg-white shadow-md px-4 py-2 flex items-center justify-between">
+    <!-- Left: Logo -->
+    <div class="flex items-center space-x-2">
+      {% comment %} <img src="#" alt="Logo" class="h-8 w-8"> {% endcomment %}
+      <span class="font-bold text-xl text-blue-600">Facebook</span>
+    </div>
+  
+    <!-- Center: Search bar -->
+    <div class="flex-1 mx-4">
+      <input type="text" placeholder="Search Facebook" class="w-full max-w-md px-4 py-1 border rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+    </div>
+  
+    <!-- Right: Icons / Profile -->
+    <div class="flex items-center space-x-4">
+      <!-- Parent container -->
+      <div class="relative inline-block text-left">
+        <!-- Trigger Button -->
+        <button id="dropdownToggle" class="text-gray-600 inline-flex hover:text-blue-500 focus:outline-none">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M3 8a1 1 0 011-1h16a1 1 0 110 2H4a1 1 0 01-1-1zM3 12a1 1 0 011-1h16a1 1 0 110 2H4a1 1 0 01-1-1zM4 15h16a1 1 0 110 2H4a1 1 0 110-2z"/>
+          </svg>
+        </button>
+      
+        <!-- Dropdown Menu -->
+        <div id="dropdownMenu" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 border hidden z-50">
+          <a href="{% url 'profile' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profile</a>
+          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Settings</a>
+          {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Logout</a>
+          {% else %}
+            <a href="{% url 'login' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Login</a>
+            <a href="{% url 'register' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Register</a>
+          {% endif %}
+        </div>
+      </div>
+      
+      <a href="#" class="text-gray-600 hover:text-blue-500">
+        <img src="#" class="h-8 w-8 rounded-full">
+      </a>
+    </div>
+  </nav>
+
+  <!-- JavaScript to Toggle Menu -->
+<script>
+  const toggle = document.getElementById('dropdownToggle');
+  const menu = document.getElementById('dropdownMenu');
+
+  toggle.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+  });
+
+  // Optional: Close dropdown when clicking outside
+  window.addEventListener('click', (e) => {
+    if (!toggle.contains(e.target) && !menu.contains(e.target)) {
+      menu.classList.add('hidden');
+    }
+  });
+</script>

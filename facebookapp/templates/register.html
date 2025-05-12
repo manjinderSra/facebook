@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="flex flex-col items-center justify-center min-h-screen">
+    
+  <!-- Header -->
+  <div class="mb-8 text-center">
+    <h1 class="text-blue-600 text-4xl font-bold">facebook</h1>
+    <p class="text-lg mt-1">Create a new account</p>
+    <p class="text-sm text-gray-600">It’s quick and easy.</p>
+  </div>
+
+  <!-- Form Card -->
+  <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+    <form method="POST" action="">
+      {% csrf_token %}
+
+      <!-- Name Fields -->
+      <div class="flex space-x-2">
+        <input type="text" name="first_name" placeholder="First name" class="w-1/2 p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+        <input type="text" name="last_name" placeholder="Surname" class="w-1/2 p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+      </div>
+
+      <!-- Email/Phone -->
+      <input type="text" name="email" placeholder="Mobile number or email address" class="w-full mt-3 p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+
+      <!-- Password -->
+      <input type="password" name="password" placeholder="New password" class="w-full mt-3 p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+
+      <!-- Date of Birth -->
+      <label class="block text-sm text-gray-600 mt-4">Date of birth</label>
+      <input type="date" name="dob" class="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+
+      <!-- Gender -->
+      <label class="block text-sm text-gray-600 mt-4">Gender</label>
+      <div class="flex space-x-4">
+        <label class="flex items-center space-x-2">
+          <input type="radio" name="gender" value="female" class="form-radio">
+          <span>Female</span>
+        </label>
+        <label class="flex items-center space-x-2">
+          <input type="radio" name="gender" value="male" class="form-radio">
+          <span>Male</span>
+        </label>
+        <label class="flex items-center space-x-2">
+          <input type="radio" name="gender" value="custom" class="form-radio">
+          <span>Custom</span>
+        </label>
+      </div>
+
+      <!-- Sign Up Button -->
+      <button type="submit" class="mt-5 w-full bg-green-600 text-white font-semibold py-2 rounded-md hover:bg-green-700">
+        Sign Up
+      </button>
+    </form>
+
+    <!-- Login Link -->
+    <p class="text-center mt-4 text-sm">
+      <a href="{% url 'login' %}" class="text-blue-600 hover:underline">Already have an account?</a>
+    </p>
+  </div>
+</div>
+
+{% endblock content %}
