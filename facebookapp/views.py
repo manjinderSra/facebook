@@ -40,9 +40,13 @@ def user_logout(req):
 def profile(req):
     if req.method == "POST":
         username = req.POST.get('username')
+        user_id = req.POST.get('user_id')
         image = req.FILES.get('image')
-        user = User.objects(username=username, image=image)
+        user = User(id=user_id)
+        if image:
+            user.image = image
         user.save()
+
         return redirect('profile')
     
     return render(req, 'profile.html')
